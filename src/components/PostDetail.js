@@ -25,11 +25,12 @@ export default class PostDetail extends Component {
   }
 
   render() {
-    const { postId } = this.props;
+    const { postId, onEditPostFormPage } = this.props;
     const {title, body} = this.state
     return (
       <div>
         <h1>게시물 페이지</h1>
+        <button onClick={() => onEditPostFormPage(postId)}>수정</button>
         {/* {postId} */}
         <div>{title}</div>
         <div>{body}</div>
