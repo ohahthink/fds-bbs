@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import api from "../api";
+import PostForm from "./PostForm"
 
 export default class NewPostForm extends Component {
   async handleSubmit(e) {
@@ -10,20 +11,14 @@ export default class NewPostForm extends Component {
     const res = await api.post("/posts", {
       title,
       body
-    });
+    })
     // 새로 생성된 게시물 보여주기
-    this.props.onPostDetailPage(res.data.id)
+    this.props.onPostDetailPage(res.data.id);
   }
 
   render() {
     return (
-      <div>
-        <form onSubmit={e => this.handleSubmit(e)}>
-          <input type="text" name="title" />
-          <textarea name="body" cols="30" rows="10" />
-          <button>전송</button>
-        </form>
-      </div>
-    );
+      <PostForm onSubmit={e => this.handleSubmit(e)}/>
+    )
   }
 }
