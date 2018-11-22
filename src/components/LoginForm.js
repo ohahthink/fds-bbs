@@ -1,7 +1,7 @@
 import React from "react";
 import { UserConsumer } from "../contexts/UserContext";
 
-export default class LoginForm extends React.Component {
+class LoginForm extends React.Component {
   // ref는 DOM노드를 가리키는 화살표
   // current는 가리키던 DOM노드를 가져옵니다
   constructor(props) {
@@ -28,18 +28,18 @@ export default class LoginForm extends React.Component {
   //     // TODO: 게시글 목록 보여주기
   // }
 
+  handleSubmit(e) {
+      e.preventDefault()
+      const username = e.target.elements.username.value
+      const password = e.target.elements.password.value
+      this.props.login(username, password)
+  }
+
   render() {
     const { onRegister } = this.props;
     return (
-      <UserConsumer>
-        {({ login }) => (
           <React.Fragment>
-            <form onSubmit={e => {
-                e.preventDefault()
-                const username = e.target.elements.username.value
-                const password = e.target.elements.password.value
-                login(username, password)
-            }}>
+            <form onSubmit={e => this.handleSubmit(e)}>
               <h1>로그인</h1>
               <input ref={this.usernameRef} type="text" name="username" />
               <input ref={this.passwordRef} type="text" name="password" />
@@ -47,8 +47,13 @@ export default class LoginForm extends React.Component {
             </form>
             <button onClick={() => onRegister()}>회원 가입</button>
           </React.Fragment>
-        )}
-      </UserConsumer>
     );
   }
+}
+// prop으로 넘겨주면, 로그인함수를 어디서나 사용할 수 있습니다, 원래는 onSubmit안에서만
+// 사용 가능했었음
+export default props => {
+    return <UserConsumer>
+        {({login}) => <LoginForm {...props} login={login}/>}
+    </UserConsumer>
 }
