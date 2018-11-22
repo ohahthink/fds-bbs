@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import api from "../api";
 import Layout from "./Layout" //import해줍니다
+import {UserConsumer} from '../contexts/UserContext'
 
 export default class PostList extends Component {
   // rconst 탭 하면 생성자 알아서 촤르륵 됩니다
@@ -27,7 +28,7 @@ export default class PostList extends Component {
     const { onPostDetailPage, onNewPostFormPage } = this.props
     return (
         // div이름을 Layout으로 변경해줌
-        // 같은 레이아웃을 이런식으로도 사용해 줄 수 있습니다
+        // 같은 레이아웃을 이런식으로도 페이지마다 동일하게 사용해 줄 수도 있습니다
       <Layout title="게시물 목록">
         <button onClick={() => onNewPostFormPage()}>새 글 쓰기</button>
         <h1>게시물 목록</h1>
