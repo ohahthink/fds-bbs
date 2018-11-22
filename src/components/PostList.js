@@ -25,11 +25,11 @@ export default class PostList extends Component {
 
   render() {
     const { posts } = this.state;
-    const { onPostDetailPage, onNewPostFormPage } = this.props
+    const { onPostDetailPage, onNewPostFormPage, onLoginFormPage } = this.props
     return (
         // div이름을 Layout으로 변경해줌
         // 같은 레이아웃을 이런식으로도 페이지마다 동일하게 사용해 줄 수도 있습니다
-      <Layout title="게시물 목록">
+      <Layout title="게시물 목록" onLoginFormPage={onLoginFormPage}>
         <button onClick={() => onNewPostFormPage()}>새 글 쓰기</button>
         <h1>게시물 목록</h1>
         <ul>

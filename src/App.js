@@ -32,6 +32,18 @@ class App extends Component {
     };
   }
 
+  handleloginFormPage() {
+    this.setState({
+      page: 'login'
+    })
+  }
+
+  handlePostListPage() {
+    this.setState({
+      page: 'post-list'
+    })
+  }
+
   handleRegisterPage() {
     this.setState({
       page: "register"
@@ -62,7 +74,7 @@ class App extends Component {
 
   render() {
     return (
-      <UserProvider>
+      <UserProvider onPostListPage={() => this.handlePostListPage()}>
         {/* null은 아무것도 안나오는 상태이기 때문에, 따로 처리를 해주지 않으면 화면에 아무것도 그려지지 않습니다 */}
         <div className="App">
           {this.state.page === "login" ? (
@@ -71,6 +83,7 @@ class App extends Component {
             <RegisterForm />
           ) : this.state.page === "post-list" ? (
             <PostList
+              onLoginFormPage={() => this.handleloginFormPage()}
               onPostDetailPage={postId => this.handlePostDetailPage(postId)}
               onNewPostFormPage={() => this.handleNewPostFormPage()}
             />
