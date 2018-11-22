@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import api from "../api";
+import Layout from "./Layout" //import해줍니다
 
 export default class PostList extends Component {
   // rconst 탭 하면 생성자 알아서 촤르륵 됩니다
@@ -25,7 +26,9 @@ export default class PostList extends Component {
     const { posts } = this.state;
     const { onPostDetailPage, onNewPostFormPage } = this.props
     return (
-      <div>
+        // div이름을 Layout으로 변경해줌
+        // 같은 레이아웃을 이런식으로도 사용해 줄 수 있습니다
+      <Layout title="게시물 목록">
         <button onClick={() => onNewPostFormPage()}>새 글 쓰기</button>
         <h1>게시물 목록</h1>
         <ul>
@@ -33,7 +36,7 @@ export default class PostList extends Component {
             <li key={post.id} onClick={() => onPostDetailPage(post.id)} >{post.title}</li>
           ))}
         </ul>
-      </div>
+      </Layout>
     );
   }
 }

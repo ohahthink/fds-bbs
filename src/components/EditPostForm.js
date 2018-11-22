@@ -30,7 +30,7 @@ export default class EditPostForm extends Component {
         title,
         body
     })
-    // TODO: 게시물 세부 페이지 보여주기
+    // 게시물 세부 페이지 보여주기
     // FIXME: 자기가 작성한 글만 수정 가능하도록 고쳐야 함
     this.props.onPostDetailPage(this.props.postId)
   }
