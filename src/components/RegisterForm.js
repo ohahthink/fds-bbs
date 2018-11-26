@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import api from '../api'
+import { Form } from 'semantic-ui-react'
 
 export default class RegisterForm extends Component {
   constructor(props) {
@@ -59,17 +60,15 @@ export default class RegisterForm extends Component {
 
     render() {
         const {username, password} = this.state
-    return (
-      <div>
-          {/* 이벤트 객체 내용이 필요할 때는 e를 넘겨주고, 필요하지 않을때는 ()넘겨주지 않아도 됩니다, 현재는 e.preventDefault()가 e를 필요로 하기 때문에 넘겨줍니다 */}
-        <form onSubmit={e => this.handleSubmit(e)}>
-            <h1>회원가입</h1>
-            {/* value를 넣어주면 제어되는 컴포넌트가 됩니다, 상태를 리액트 컴포넌트 안에 저장하고 그 상태를 리액트 컴포넌트 안에서 바꿔줘야 합니다*/}
-            <input type="text" name="username" value={username} onChange={e => this.handleFieldChange(e, 'username')}/>
-                <input type="password" name="password" value={password} onChange={e => this.handleFieldChange(e, 'password')}/>
-            <button>가입</button>
-        </form>
-      </div>
-    )
+    return <div>
+        {/* 이벤트 객체 내용이 필요할 때는 e를 넘겨주고, 필요하지 않을때는 ()넘겨주지 않아도 됩니다, 현재는 e.preventDefault()가 e를 필요로 하기 때문에 넘겨줍니다 */}
+        <Form onSubmit={e => this.handleSubmit(e)}>
+          <h1>회원가입</h1>
+          {/* value를 넣어주면 제어되는 컴포넌트가 됩니다, 상태를 리액트 컴포넌트 안에 저장하고 그 상태를 리액트 컴포넌트 안에서 바꿔줘야 합니다*/}
+          <Form.Input label="아이디" type="text" name="username" value={username} onChange={e => this.handleFieldChange(e, "username")} />
+          <Form.Input label="비밀번호" type="password" name="password" value={password} onChange={e => this.handleFieldChange(e, "password")} />
+          <Form.Button>가입</Form.Button>
+        </Form>
+      </div>;
   }
 }
