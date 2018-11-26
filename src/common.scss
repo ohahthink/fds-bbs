@@ -1,0 +1,28 @@
+// 앞으로 scss파일을 여러개 작성할 것이다 라고 하면
+// 변수 설정, 유지보수성이 용이해집니다
+
+
+$main-color: green;
+$sub-color: orange;
+$main-border: 5px solid silver;
+
+// 매개변수 안 받을 때는 () 생략해도 됩니다
+@mixin common-border {
+    border: $main-border;
+}
+
+// 미디어쿼리 믹스인 사용예제
+@mixin desktop {
+    @media screen and (min-width: 768px) {
+        // 믹스인을 사용할 때(@include) ! {} 부분이 @content 안으로 들어가게 되는 것입니다
+        // 즉 @content는 빈칸역할을 합니다
+        @content
+    }
+}
+
+@mixin mobile {
+    @media screen and (max-width: 768px) {
+        @content;
+    }
+}
+

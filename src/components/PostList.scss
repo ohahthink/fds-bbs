@@ -1,0 +1,37 @@
+@import '../common.scss';
+
+/* 리액트 전체에 적용되는 CSS파일입니다 이 곳은 */
+/* 리액트 에서는 컴포넌트 이름을 붙여준 뒤에 클래스이름을 짓는게 관례입니다 */
+/* 리액트 에서는 컴포넌트가 블록이 됩니다! */
+
+
+.PostList {
+
+    // 자기 선택자를 사용하면 네스팅의 의미가 바뀝니다
+    // &를 사용하면 부모에 대한 내용이 빠집니다, 문자열이 &자리에 그대로 들어가는 것이다 라고 생각하세요
+    &__title {
+        color: green;
+
+        // 밑에 코드는 .PostList__title--loading 이되는 겁니다
+        &--loading {
+            color: $sub-color;
+        }
+    }
+
+    &__title--loading {
+        color: orange;
+    }
+
+    &__list {
+        // mixin사용 , 코드뭉치를 재사용 하고 싶을 때 이런식으로 사용합니다
+        @include common-border;
+
+        @include desktop {
+            border-color: brown;
+        }
+    }
+
+    &__item {
+        color: tan;
+    }
+}

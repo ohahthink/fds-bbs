@@ -2,13 +2,18 @@ import React, { Component } from "react";
 import api from "../api";
 import Layout from "./Layout" //import해줍니다
 import {UserConsumer} from '../contexts/UserContext'
+import classNames from 'classnames'
+import './PostList.scss'
 
 export default class PostList extends Component {
   // rconst 탭 하면 생성자 알아서 촤르륵 됩니다
   constructor(props) {
     super(props);
 
-    this.state = { posts: [], loading: false };
+    this.state = {
+        posts: [],
+        loading: false
+    }
   }
 
   // 상호작용이 일어나는 것은 아니지만, 사용자가 뭔가 누르면 상태를 업데이트 해줘서 게시물 목록을 보여주는 것
@@ -20,23 +25,34 @@ export default class PostList extends Component {
   async componentDidMount() {
     // 파일이름으로 default되어있는 것들은 알아서 import시켜줍니다
     const res = await api.get("/posts");
-    this.setState({ posts: res.data });
+    this.setState({
+        posts: res.data,
+        loading: false
+    });
   }
 
   render() {
     const { posts } = this.state;
     const { onPostDetailPage, onNewPostFormPage, onLoginFormPage } = this.props
+    const titleClass = classNames(
+        'PostList__title',
+        {
+            'PostList__title--loading': this.state.loading
+        }
+    )
     return (
         // div이름을 Layout으로 변경해줌
         // 같은 레이아웃을 이런식으로도 페이지마다 동일하게 사용해 줄 수도 있습니다
       <Layout title="게시물 목록" onLoginFormPage={onLoginFormPage}>
+        <div className="PostList">
         <button onClick={() => onNewPostFormPage()}>새 글 쓰기</button>
-        <h1>게시물 목록</h1>
-        <ul>
+        <h1 className={titleClass}>게시물 목록</h1>
+        <ul className="PostList__list">
           {posts.map(post => (
-            <li key={post.id} onClick={() => onPostDetailPage(post.id)} >{post.title}</li>
+            <li className="PostList__item" key={post.id} onClick={() => onPostDetailPage(post.id)} >{post.title}</li>
           ))}
         </ul>
+        </div>
       </Layout>
     );
   }

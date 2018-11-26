@@ -67,5 +67,31 @@ logout() {
   }
 }
 
+// 어떤 HOC를 만들 때에도 다 사용될 수 있는 함수
+function getDisplayName(WrappedComponent) {
+    return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+}
+
+// 고차컴포넌트의 이름은 with으로 시작해주는게 관례, 대문자로 시작해야합니다
+function withUser(WrappedComponenet) {
+    function WithUser(props) {
+        return (
+            <Consumer>
+                {value => <WrappedComponenet {...value} {...props} />}
+            </Consumer>
+        )
+    }
+    // displayName에 표시해준 문자열이, 개발자 도구에 표시되는 기능 (리액트 내장기능)
+    // 이 문자열을 직관적이게 잘 표시해주는 게 좋습니다
+    // WithUser.displayName = 'WithUser(!!!)'
+        WithUser.displayName =`withUser(${getDisplayName(WrappedComponenet)})`
+        return WithUser
+    }
+
+
 //named export 여러개 동시에 하고 싶을 때
-export { UserProvider, Consumer as UserConsumer };
+export { 
+    UserProvider,
+    Consumer as UserConsumer,
+    withUser
+};

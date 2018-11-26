@@ -1,5 +1,5 @@
 import React from "react";
-import { UserConsumer } from "../contexts/UserContext";
+import { UserConsumer, withUser } from "../contexts/UserContext";
 
 class LoginForm extends React.Component {
   // ref는 DOM노드를 가리키는 화살표
@@ -50,10 +50,6 @@ class LoginForm extends React.Component {
     );
   }
 }
-// prop으로 넘겨주면, 로그인함수를 어디서나 사용할 수 있습니다, 원래는 onSubmit안에서만
-// 사용 가능했었음
-export default props => {
-    return <UserConsumer>
-        {({login}) => <LoginForm {...props} login={login}/>}
-    </UserConsumer>
-}
+// prop으로 넘겨주면, 로그인함수를 어디서나 사용할 수 있습니다
+// 원래는 onSubmit안에서만 사용 가능했었음
+export default withUser(LoginForm)
