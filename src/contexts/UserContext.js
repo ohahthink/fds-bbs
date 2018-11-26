@@ -3,7 +3,13 @@ import api from "../api";
 
 // provider기본값 생략된 코드
 // login 관련된 기능을 userprovider한테 넘겨주고, loginform에서는 함수를 호출해주고 있습니다
-const { Provider, Consumer } = React.createContext();
+const { Provider, Consumer } = React.createContext({
+    // 프로바이더가 없을 때 이 값이 기본적으로 사용됩니다
+    username: 'fast',
+    id: 0,
+    login: () => {},
+    logout: () => {}
+})
 
 export default class UserProvider extends Component {
   constructor(props) {

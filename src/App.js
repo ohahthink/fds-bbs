@@ -4,7 +4,7 @@ import "./App.css";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import PostList from "./components/PostList";
-import PostDetail from "./components/PostDetail";
+import PostDetail from "./containers/PostDetail";
 import NewPostForm from "./components/NewPostForm";
 import EditPostForm from "./components/EditPostForm";
 import UserProvider, { Userprovider } from "./contexts/UserContext";

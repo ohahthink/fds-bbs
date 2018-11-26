@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import PostDetailView from "../components/PostDetailView";
 import api from "../api";
-import Layout from "./Layout";
-import { UserConsumer } from "../contexts/UserContext";
+
 
 export default class PostDetail extends Component {
+  
   // 상태를 만들어준다
   constructor(props) {
     super(props);
@@ -21,8 +22,7 @@ export default class PostDetail extends Component {
     // res.data가 객체라서 그 객체에 대한 분해대입을 한 것입니다
     // 받아온 데이터를 title, body에 넣어눕니다
     const {
-      data: { title, body, userId }
-    } = await api.get(`/posts/${this.props.postId}`);
+      data: { title, body, userId }} = await api.get(`/posts/${this.props.postId}`);
     this.setState({
       title,
       body,
@@ -31,22 +31,17 @@ export default class PostDetail extends Component {
   }
 
   render() {
-    const { postId, onEditPostFormPage } = this.props;
-    const { title, body } = this.state;
+    const {onEditPostFormPage, postId} = this.props
+    const {userId, title, body} = this.state
     return (
-      <Layout>
-        <h1>게시물 페이지</h1>
-        <UserConsumer>
-          {({ id }) => {
-            if (this.state.userId === id) {
-              return <button onClick={() => onEditPostFormPage(postId)}>수정</button>;
-            }
-          }}
-        </UserConsumer>
-
-        <div>{title}</div>
-        <div>{body}</div>
-      </Layout>
-    );
+      <PostDetailView 
+        userId={userId}
+        onEditPostFormPage={onEditPostFormPage}
+        postId={postId}
+        title={title}
+        body={body}
+      />
+   );
   }
 }
+
