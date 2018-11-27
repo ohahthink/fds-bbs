@@ -13,7 +13,8 @@ export default class PostDetail extends Component {
     this.state = {
       body: "",
       title: "",
-      userId: null
+      userId: null,
+      loading: true
     };
   }
 
@@ -26,15 +27,18 @@ export default class PostDetail extends Component {
     this.setState({
       title,
       body,
-      userId
+      userId,
+      loading: false
+      // 통신이 끝났을 때 로딩을 false로 만들어줌
     });
   }
 
   render() {
     const {onEditPostFormPage, postId} = this.props
-    const {userId, title, body} = this.state
+    const {userId, title, body, loading} = this.state
     return (
       <PostDetailView 
+        loading={loading}
         userId={userId}
         onEditPostFormPage={onEditPostFormPage}
         postId={postId}
