@@ -34,6 +34,11 @@ export default class PostList extends Component {
 
     render() {
         const {onPostDetailPage, onNewPostFormPage} = this.props
-        return <PostListView posts={this.state.posts} onPostDetailPage={onPostDetailPage} onNewPostFormPage={onNewPostFormPage} />
+        return <PostListView
+            posts={this.state.posts}
+            loading={this.state.loading}
+            onPostDetailPage={onPostDetailPage}
+            onNewPostFormPage={onNewPostFormPage}
+            />
     }
 }
