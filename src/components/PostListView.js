@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { Helmet } from 'react-helmet';
 
 export default class PostListView extends Component {
   render() {
@@ -15,6 +16,9 @@ export default class PostListView extends Component {
     });
     return (
       <React.Fragment>
+        <Helmet>
+          <title>게시물 목록</title>
+        </Helmet>
         <div className="PostList">
           <button onClick={() => onNewPostFormPage()}>새 글 쓰기</button>
           <h1 className={titleClass}>게시물 목록</h1>
