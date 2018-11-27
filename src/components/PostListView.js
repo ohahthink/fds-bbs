@@ -1,11 +1,17 @@
-import React, { Component } from "react";
-import classNames from 'classnames'
+import React, { Component } from 'react';
+import classNames from 'classnames';
 
 export default class PostListView extends Component {
   render() {
-    const { posts, onPostDetailPage, onNewPostFormPage, onLoginFormPage, loading } = this.props;
-    const titleClass = classNames("PostList__title", {
-      "PostList__title--loading": loading
+    const {
+      posts,
+      onPostDetailPage,
+      onNewPostFormPage,
+      onLoginFormPage,
+      loading,
+    } = this.props;
+    const titleClass = classNames('PostList__title', {
+      'PostList__title--loading': loading,
     });
     return (
       <React.Fragment>

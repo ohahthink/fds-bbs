@@ -1,11 +1,9 @@
-import React, { Component } from "react";
-import Layout from "./Layout";
-import { UserConsumer } from "../contexts/UserContext";
-import withLoading from "../hoc/withLoading";
+import React, { Component } from 'react';
+import Layout from './Layout';
+import { UserConsumer } from '../contexts/UserContext';
+import withLoading from '../hoc/withLoading';
 
 class PostDetailView extends Component {
-
-
   render() {
     const { postId, onEditPostFormPage, userId, title, body } = this.props;
 
@@ -15,15 +13,17 @@ class PostDetailView extends Component {
         <UserConsumer>
           {({ id }) => {
             if (userId === id) {
-              return <button onClick={() => onEditPostFormPage(postId)}>수정</button>;
+              return (
+                <button onClick={() => onEditPostFormPage(postId)}>수정</button>
+              );
             }
           }}
         </UserConsumer>
         <div>{title}</div>
         <div>{body}</div>
       </React.Fragment>
-    )
+    );
   }
 }
 
-export default withLoading(PostDetailView)
+export default withLoading(PostDetailView);
