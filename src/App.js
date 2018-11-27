@@ -3,8 +3,8 @@ import logo from "./logo.svg";
 import "./App.css";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
-import PostList from "./components/PostList";
-import PostDetail from "./containers/PostDetail";
+import PostListPage from "./pages/PostListPage";
+import PostDetailPage from "./pages/PostDetailPage";
 import NewPostForm from "./components/NewPostForm";
 import EditPostForm from "./components/EditPostForm";
 import UserProvider, { Userprovider } from "./contexts/UserContext";
@@ -82,13 +82,13 @@ class App extends Component {
           ) : this.state.page === "register" ? (
             <RegisterForm />
           ) : this.state.page === "post-list" ? (
-            <PostList
+            <PostListPage
               onLoginFormPage={() => this.handleloginFormPage()}
               onPostDetailPage={postId => this.handlePostDetailPage(postId)}
               onNewPostFormPage={() => this.handleNewPostFormPage()}
             />
           ) : this.state.page === "post-detail" ? (
-            <PostDetail
+            <PostDetailPage
               postId={this.state.postId}
               onEditPostFormPage={postId => this.handleEditPostFormPage(postId)}
             />

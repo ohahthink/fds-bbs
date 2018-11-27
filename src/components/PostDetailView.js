@@ -10,7 +10,7 @@ class PostDetailView extends Component {
     const { postId, onEditPostFormPage, userId, title, body } = this.props;
 
     return (
-      <Layout>
+      <React.Fragment>
         <h1>게시물 페이지</h1>
         <UserConsumer>
           {({ id }) => {
@@ -21,8 +21,8 @@ class PostDetailView extends Component {
         </UserConsumer>
         <div>{title}</div>
         <div>{body}</div>
-      </Layout>
-    );
+      </React.Fragment>
+    )
   }
 }
 

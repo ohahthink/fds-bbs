@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import s from './PostForm.module.scss'
 import classNames from 'classnames'
 // 이름 아무거나 사용해도 됩니다, cn이라고 사용하는 경우도 있습니다
+import {Form} from 'semantic-ui-react'
 
 // defaultValue에 다른 값을 또 넣어주지 않도록 주의!
 export default class PostForm extends Component {
@@ -21,16 +22,16 @@ export default class PostForm extends Component {
     })
     return (
       <div>
-        <form onSubmit={e => {
+        <Form onSubmit={e => {
             e.preventDefault()
             const title = e.target.elements.title.value
             const body = e.target.elements.body.value
             this.props.onSubmit(title, body)
             }}>
-          <input className={titleClass} type="text" name="title" defaultValue={this.props.title}/>
-          <textarea name="body" cols="30" rows="10" defaultValue={this.props.body}/>
-          <button>전송</button>
-        </form>
+          <Form.Input className={titleClass} type="text" name="title" defaultValue={this.props.title}/>
+          <Form.TextArea name="body" cols="30" rows="10" defaultValue={this.props.body}/>
+          <Form.Button>전송</Form.Button>
+        </Form>
       </div>
     )
   }
